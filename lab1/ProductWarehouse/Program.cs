@@ -67,16 +67,23 @@ class Program
     }
 
     // Метод для реєстрації надходження товару
-    static void RegisterProductArrival(Warehouse warehouse, Reporting reporting)
+
+    static Product GetSelectedProduct(Warehouse warehouse)
     {
         Console.Write("\nВиберіть номер товару: ");
         if (!int.TryParse(Console.ReadLine(), out int choice) || choice < 1 || choice > warehouse.Products.Count)
         {
             Console.WriteLine("Некоректний вибір товару.");
-            return;
+            return null;
         }
+        return warehouse.Products[choice - 1];
+    }
 
-        Product selectedProduct = warehouse.Products[choice - 1];
+    static void RegisterProductArrival(Warehouse warehouse, Reporting reporting)
+    {
+        Product selectedProduct = GetSelectedProduct(warehouse);
+        if (selectedProduct == null) return;
+
 
         Console.Write("Введіть кількість надходження: ");
         if (int.TryParse(Console.ReadLine(), out int arrivalQty))
@@ -92,14 +99,8 @@ class Program
     // Метод для реєстрації відвантаження товару
     static void RegisterProductShipment(Warehouse warehouse, Reporting reporting)
     {
-        Console.Write("\nВиберіть номер товару: ");
-        if (!int.TryParse(Console.ReadLine(), out int choice) || choice < 1 || choice > warehouse.Products.Count)
-        {
-            Console.WriteLine("Некоректний вибір товару.");
-            return;
-        }
-
-        Product selectedProduct = warehouse.Products[choice - 1];
+        Product selectedProduct = GetSelectedProduct(warehouse);
+        if (selectedProduct == null) return;
 
         Console.Write("Введіть кількість для відвантаження: ");
         if (int.TryParse(Console.ReadLine(), out int shipmentQty))
@@ -115,14 +116,8 @@ class Program
     // Метод для зменшення ціни товару
     static void ReduceProductPrice(Warehouse warehouse)
     {
-        Console.Write("Виберіть номер товару: ");
-        if (!int.TryParse(Console.ReadLine(), out int priceChoice) || priceChoice < 1 || priceChoice > warehouse.Products.Count)
-        {
-            Console.WriteLine("Некоректний вибір товару.");
-            return;
-        }
-
-        Product priceProduct = warehouse.Products[priceChoice - 1];
+        Product priceProduct = GetSelectedProduct(warehouse);
+        if (priceProduct == null) return;
 
         Console.Write("Введіть суму, на яку потрібно зменшити ціну: ");
         if (double.TryParse(Console.ReadLine(), out double amount))
