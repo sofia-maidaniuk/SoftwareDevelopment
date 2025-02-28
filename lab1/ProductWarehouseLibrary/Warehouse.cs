@@ -18,10 +18,18 @@ namespace ProductWarehouseLibrary
         public void DisplayProducts()
         {
             Console.WriteLine("Товари на складі:");
+            if (Products.Count == 0)
+            {
+                Console.WriteLine("Склад порожній.");
+                return;
+            }
+
             for (int i = 0; i < Products.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {Products[i].Name} ({Products[i].Category}) - {Products[i].Price:F2} USD");
+                Console.Write($"{i + 1}. ");
+                Products[i].Display();  
             }
         }
+
     }
 }

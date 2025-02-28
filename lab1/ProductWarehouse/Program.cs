@@ -15,6 +15,8 @@ class Program
         warehouse.AddProduct(new Product("Ноутбук", "Електроніка", "шт.", 1200, 10, DateTime.Now.AddDays(-5)));
         warehouse.AddProduct(new Product("Телефон", "Електроніка", "шт.", 800, 20, DateTime.Now.AddDays(-3)));
         warehouse.AddProduct(new Product("Планшет", "Електроніка", "шт.", 500, 15, DateTime.Now.AddDays(-7)));
+        warehouse.AddProduct(new LimitedEditionProduct("Кавомашина", "Техніка", "шт.", 1500, 5, DateTime.Now.AddDays(-2), "Лімітована серія"));
+
 
         while (true)
         {

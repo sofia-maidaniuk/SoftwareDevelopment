@@ -37,9 +37,9 @@ namespace ProductWarehouseLibrary
             }
         }
 
-        public void Display()
+        public virtual void Display()
         {
-            Console.WriteLine($"\n{Name} ({Category}, {Unit}): {Price:F2} USD, Кількість: {Quantity}, Останнє завезення: {LastRestockDate:dd.MM.yyyy}\n");
+            Console.WriteLine($"{Name} ({Category}, {Unit}): {Price:F2} USD, Кількість: {Quantity}, Останнє завезення: {LastRestockDate:dd.MM.yyyy}");
         }
     }
 }
