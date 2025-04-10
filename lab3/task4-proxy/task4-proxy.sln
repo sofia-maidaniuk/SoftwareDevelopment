@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyLibrary", "ProxyLibrary\ProxyLibrary.csproj", "{6FEBAF42-A248-494F-9FF8-BAED3CEC05CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp-task4", "ConsoleApp-task4\ConsoleApp-task4.csproj", "{8B352122-7884-4581-A246-B0F0E7D98F05}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6FEBAF42-A248-494F-9FF8-BAED3CEC05CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FEBAF42-A248-494F-9FF8-BAED3CEC05CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FEBAF42-A248-494F-9FF8-BAED3CEC05CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FEBAF42-A248-494F-9FF8-BAED3CEC05CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B352122-7884-4581-A246-B0F0E7D98F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B352122-7884-4581-A246-B0F0E7D98F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B352122-7884-4581-A246-B0F0E7D98F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B352122-7884-4581-A246-B0F0E7D98F05}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1974A4C1-CC64-41FF-8DAE-85E0FE449505}
+	EndGlobalSection
+EndGlobal
