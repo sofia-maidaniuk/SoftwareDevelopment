@@ -43,6 +43,10 @@
   <ItemGroup>
     <Compile Include="ConsoleLoggerEventListener.cs" />
     <Compile Include="IEventListener.cs" />
+    <Compile Include="Lab4.4-stategy\FileImageLoadingStrategy.cs" />
+    <Compile Include="Lab4.4-stategy\IImageLoadingStrategy.cs" />
+    <Compile Include="Lab4.4-stategy\ImageNode.cs" />
+    <Compile Include="Lab4.4-stategy\NetworkImageLoadingStrategy.cs" />
     <Compile Include="LightElementNode.cs" />
     <Compile Include="LightNode.cs" />
     <Compile Include="LightTextNode.cs" />

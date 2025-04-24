@@ -1,4 +1,5 @@
 ﻿using CompositeLibrary;
+using CompositeLibrary.Lab4._4_stategy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,13 @@ namespace ConsoleApp_task5
             list.AddChild(movie3);
 
             root.AddChild(list);
+
+            // Додавання картинки через стратегію
+            var imageFromFile = new ImageNode("image.jpg", new FileImageLoadingStrategy());
+            var imageFromWeb = new ImageNode("https://example.com/logo.png", new NetworkImageLoadingStrategy());
+
+            root.AddChild(imageFromFile);
+            root.AddChild(imageFromWeb);
 
             // Вивід HTML
             Console.ForegroundColor = ConsoleColor.Green;
