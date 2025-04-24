@@ -25,6 +25,9 @@ namespace CompositeLibrary
         public List<string> CssClasses { get; } = new List<string>();
         public List<LightNode> Children { get; } = new List<LightNode>();
 
+        // Підтримка подій
+        private readonly Dictionary<string, List<IEventListener>> eventListeners = new Dictionary<string, List<IEventListener>>();
+
         public LightElementNode(string tagName, DisplayType display, ClosingType closing)
         {
             TagName = tagName;
@@ -45,11 +48,30 @@ namespace CompositeLibrary
             Children.Add(node);
         }
 
+        // додавання слухача
+        public void AddEventListener(string eventType, IEventListener listener)
+        {
+            if (!eventListeners.ContainsKey(eventType))
+                eventListeners[eventType] = new List<IEventListener>();
+
+            eventListeners[eventType].Add(listener);
+        }
+
+        // виклик подій
+        public void TriggerEvent(string eventType)
+        {
+            if (eventListeners.ContainsKey(eventType))
+            {
+                foreach (var listener in eventListeners[eventType])
+                {
+                    listener.HandleEvent(eventType, this);
+                }
+            }
+        }
+
         public override string OuterHtml()
         {
             var sb = new StringBuilder();
-
-            // Відкриваючий тег
             sb.Append($"<{TagName}");
 
             if (CssClasses.Any())
@@ -64,16 +86,12 @@ namespace CompositeLibrary
             }
 
             sb.Append(">");
-
-            // Вміст
             foreach (var child in Children)
             {
                 sb.Append(child.OuterHtml());
             }
 
-            // Закриваючий тег
             sb.Append($"</{TagName}>");
-
             return sb.ToString();
         }
 
