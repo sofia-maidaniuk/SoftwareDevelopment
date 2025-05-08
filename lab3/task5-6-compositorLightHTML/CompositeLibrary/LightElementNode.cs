@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompositeLibrary.Iterators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace CompositeLibrary
         Double
     }
 
-    public class LightElementNode : LightNode
+    public class LightElementNode : LightNode, ILightNodeCollection
     {
         public string TagName { get; }
         public DisplayType Display { get; }
@@ -151,6 +152,16 @@ namespace CompositeLibrary
         public override int ChildElementsCount()
         {
             return Children.Count;
+        }
+
+        public ILightNodeIterator CreateDepthIterator()
+        {
+            return new DepthFirstIterator(this);
+        }
+
+        public ILightNodeIterator CreateBreadthIterator()
+        {
+            return new BreadthFirstIterator(this);
         }
     }
 }
