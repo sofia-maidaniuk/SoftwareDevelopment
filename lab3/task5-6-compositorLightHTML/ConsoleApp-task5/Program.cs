@@ -1,4 +1,5 @@
 ﻿using CompositeLibrary;
+using CompositeLibrary.Lab4._4_stategy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,37 +12,56 @@ namespace ConsoleApp_task5
     {
         static void Main()
         {
-            // Створення  <div>
+            Console.OutputEncoding = Encoding.UTF8;
+
+            // Створення <div>
             var root = new LightElementNode("div", DisplayType.Block, ClosingType.Double);
-            root.CssClasses.Add("container");
+            root.AddCssClass("container");
 
             var heading = new LightElementNode("h2", DisplayType.Block, ClosingType.Double);
-            heading.CssClasses.Add("title");
-            heading.Children.Add(new LightTextNode("My Favorite Movies"));
-            root.Children.Add(heading);
+            heading.AddCssClass("title");
+            heading.AddChild(new LightTextNode("My Favorite Movies"));
 
-            // Додавання списку 
+            // Додаємо обробник подій до заголовка
+            heading.AddEventListener("click", new ConsoleLoggerEventListener("ClickHandler"));
+            heading.AddEventListener("mouseover", new ConsoleLoggerEventListener("HoverHandler"));
+
+            // Імітація подій
+            heading.TriggerEvent("click");
+            heading.TriggerEvent("mouseover");
+
+            root.AddChild(heading);
+
+            // Додавання списку
             var list = new LightElementNode("ul", DisplayType.Block, ClosingType.Double);
-            list.CssClasses.Add("movie-list");
+            list.AddCssClass("movie-list");
 
-            // Додавання елементів списку 
+            // Додавання елементів списку
             var movie1 = new LightElementNode("li", DisplayType.Block, ClosingType.Double);
-            movie1.Children.Add(new LightTextNode("The Hunger Games"));
+            movie1.AddChild(new LightTextNode("The Hunger Games"));
 
             var movie2 = new LightElementNode("li", DisplayType.Block, ClosingType.Double);
-            movie2.Children.Add(new LightTextNode("Interstellar"));
+            movie2.AddChild(new LightTextNode("Interstellar"));
 
             var movie3 = new LightElementNode("li", DisplayType.Block, ClosingType.Double);
-            movie3.Children.Add(new LightTextNode("Inception"));
+            movie3.AddChild(new LightTextNode("Inception"));
 
-            list.Children.Add(movie1);
-            list.Children.Add(movie2);
-            list.Children.Add(movie3);
+            list.AddChild(movie1);
+            list.AddChild(movie2);
+            list.AddChild(movie3);
 
-            root.Children.Add(list);
+            root.AddChild(list);
 
+            // Додавання картинки через стратегію
+            var imageFromFile = new ImageNode("image.jpg", new FileImageLoadingStrategy());
+            var imageFromWeb = new ImageNode("https://example.com/logo.png", new NetworkImageLoadingStrategy());
+
+            root.AddChild(imageFromFile);
+            root.AddChild(imageFromWeb);
+
+            // Вивід HTML
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Outer HTML:");
+            Console.WriteLine("\nOuter HTML:");
             Console.ResetColor();
             Console.WriteLine(root.OuterHtml());
 
