@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CompositeLibrary.Lab4._4_stategy;
 
-namespace CompositeLibrary.Lab4._4_stategy
+namespace CompositeLibrary
 {
     public class ImageNode : LightNode
     {
@@ -24,12 +21,38 @@ namespace CompositeLibrary.Lab4._4_stategy
 
         public override string OuterHtml()
         {
-            // Делегація створення HTML коду стратегії завантаження
-            return _loadingStrategy.LoadImage(Src);
+            return RenderOuterHtml(); // Використовуємо шаблонний метод
         }
 
         public override string InnerHtml() => string.Empty;
 
         public override int ChildElementsCount() => 0;
+
+        // Реалізація шаблонного методу
+        protected override void ApplyStyles()
+        {
+            Console.WriteLine("[ImageNode] No styles to apply.");
+        }
+
+        protected override void ApplyClassList()
+        {
+            Console.WriteLine("[ImageNode] No class list to apply.");
+        }
+
+        protected override string RenderOuterHtml()
+        {
+            return _loadingStrategy.LoadImage(Src);
+        }
+
+        protected override string RenderInnerHtml()
+        {
+            return string.Empty;
+        }
+
+        // життєві хуки
+        public override void OnCreated() => Console.WriteLine("[Lifecycle] ImageNode created");
+        public override void OnInserted() => Console.WriteLine("[Lifecycle] ImageNode inserted");
+        public override void OnRemoved() => Console.WriteLine("[Lifecycle] ImageNode removed");
+        public override void OnTextRendered() => Console.WriteLine("[Lifecycle] ImageNode rendered");
     }
 }
