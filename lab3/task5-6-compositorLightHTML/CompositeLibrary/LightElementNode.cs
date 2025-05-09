@@ -1,5 +1,6 @@
 ﻿using CompositeLibrary.Iterators;
 using CompositeLibrary.State;
+using CompositeLibrary.Visitor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,6 @@ namespace CompositeLibrary
 
         private IVisibilityState _state = new VisibleState();
 
-        // Підтримка подій
         private readonly Dictionary<string, List<IEventListener>> eventListeners = new Dictionary<string, List<IEventListener>>();
 
         public LightElementNode(string tagName, DisplayType display, ClosingType closing)
@@ -177,6 +177,15 @@ namespace CompositeLibrary
         public override int ChildElementsCount()
         {
             return Children.Count;
+        }
+
+        public override void Accept(ILightNodeVisitor visitor)
+        {
+            visitor.VisitElement(this);
+            foreach (var child in Children)
+            {
+                child.Accept(visitor);
+            }
         }
 
         public ILightNodeIterator CreateDepthIterator()
