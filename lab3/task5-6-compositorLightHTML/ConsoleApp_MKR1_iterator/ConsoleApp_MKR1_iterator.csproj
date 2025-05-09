@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FC09D211-DDDA-4C51-87C8-D7E3BD2153FA}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CompositeLibrary</RootNamespace>
-    <AssemblyName>CompositeLibrary</AssemblyName>
+    <ProjectGuid>{9D2989DE-13E6-4E5B-A88B-EEE5F5CC0A44}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ConsoleApp_MKR1_iterator</RootNamespace>
+    <AssemblyName>ConsoleApp_MKR1_iterator</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,20 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsoleLoggerEventListener.cs" />
-    <Compile Include="IEventListener.cs" />
-    <Compile Include="Iterators\BreadthFirstIterator.cs" />
-    <Compile Include="Iterators\DepthFirstIterator.cs" />
-    <Compile Include="Iterators\ILightNodeCollection.cs" />
-    <Compile Include="Iterators\ILightNodeIterator.cs" />
-    <Compile Include="Lab4.4-stategy\FileImageLoadingStrategy.cs" />
-    <Compile Include="Lab4.4-stategy\IImageLoadingStrategy.cs" />
-    <Compile Include="Lab4.4-stategy\ImageNode.cs" />
-    <Compile Include="Lab4.4-stategy\NetworkImageLoadingStrategy.cs" />
-    <Compile Include="LightElementNode.cs" />
-    <Compile Include="LightNode.cs" />
-    <Compile Include="LightTextNode.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CompositeLibrary\CompositeLibrary.csproj">
+      <Project>{fc09d211-ddda-4c51-87c8-d7e3bd2153fa}</Project>
+      <Name>CompositeLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
