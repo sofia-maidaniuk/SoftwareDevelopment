@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CompositeLibrary.Visitor;
 
 namespace CompositeLibrary
 {
@@ -55,7 +56,15 @@ namespace CompositeLibrary
         // Життєві хуки (демо)
         public override void OnCreated() => Console.WriteLine("[Lifecycle] LightTextNode created");
         public override void OnInserted() => Console.WriteLine("[Lifecycle] LightTextNode inserted");
-        public override void OnTextSanitize() => Console.WriteLine("[Lifecycle] LightTextNode text sanitized");
+        public override void OnRemoved() => Console.WriteLine("[Lifecycle] LightTextNode removed");
+        public override void OnStylesApplied() => Console.WriteLine("[Lifecycle] No styles applied to LightTextNode");
+        public override void OnClassListApplied() => Console.WriteLine("[Lifecycle] No class list applied to LightTextNode");
         public override void OnTextRendered() => Console.WriteLine("[Lifecycle] LightTextNode text rendered");
+        public override void OnTextSanitize() => Console.WriteLine("[Lifecycle] LightTextNode text sanitized");
+
+        public override void Accept(ILightNodeVisitor visitor)
+        {
+            visitor.VisitText(this);
+        }
     }
 }

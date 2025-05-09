@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompositeLibrary.Visitor;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace CompositeLibrary
         public abstract string OuterHtml();
         public abstract string InnerHtml();
         public abstract int ChildElementsCount();
+        public abstract void Accept(ILightNodeVisitor visitor);
         public string Render()
         {
             OnCreated();

@@ -1,5 +1,6 @@
 ﻿using System;
 using CompositeLibrary.Lab4._4_stategy;
+using CompositeLibrary.Visitor;
 
 namespace CompositeLibrary
 {
@@ -54,5 +55,7 @@ namespace CompositeLibrary
         public override void OnInserted() => Console.WriteLine("[Lifecycle] ImageNode inserted");
         public override void OnRemoved() => Console.WriteLine("[Lifecycle] ImageNode removed");
         public override void OnTextRendered() => Console.WriteLine("[Lifecycle] ImageNode rendered");
+
+        public override void Accept(ILightNodeVisitor visitor){}
     }
 }
