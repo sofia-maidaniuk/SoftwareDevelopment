@@ -1,4 +1,5 @@
 ﻿using CompositeLibrary.Iterators;
+using CompositeLibrary.State;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,8 @@ namespace CompositeLibrary
         public List<LightNode> Children { get; } = new List<LightNode>();
         public Dictionary<string, string> Styles { get; } = new Dictionary<string, string>();
 
+        private IVisibilityState _state = new VisibleState();
+
         // Підтримка подій
         private readonly Dictionary<string, List<IEventListener>> eventListeners = new Dictionary<string, List<IEventListener>>();
 
@@ -35,6 +38,18 @@ namespace CompositeLibrary
             TagName = tagName;
             Display = display;
             Closing = closing;
+        }
+
+        public void SetVisibilityState(IVisibilityState state)
+        {
+            _state.OnExit();
+            _state = state;
+            _state.OnEnter();
+        }
+
+        public string RenderWithState()
+        {
+            return _state.Render(this);
         }
 
         public void AddCssClass(string className)
@@ -132,6 +147,16 @@ namespace CompositeLibrary
             }
             return sb.ToString();
         }
+
+        public string RenderContentFromState()
+        {
+            return RenderOuterHtml();
+        }
+        public string RenderInnerContentFromState()
+        {
+            return RenderInnerHtml();
+        }
+
         public override void OnCreated() => Console.WriteLine($"[Lifecycle] <{TagName}> created");
         public override void OnInserted() => Console.WriteLine($"[Lifecycle] <{TagName}> inserted");
         public override void OnRemoved() => Console.WriteLine($"[Lifecycle] <{TagName}> removed");
